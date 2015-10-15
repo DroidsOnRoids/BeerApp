@@ -1,66 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".BeerActivity"
-    tools:showIn="@layout/activity_beer">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
 
-    <LinearLayout
-        android:id="@+id/beer_layout"
+    <data>
+
+        <import type="android.view.View"/>
+
+        <import type="pl.droidsonroids.beerapp.model.Beer"/>
+
+        <variable
+            name="beer"
+            type="Beer"/>
+
+    </data>
+
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="@dimen/text_margin">
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:context=".BeerActivity"
+        tools:showIn="@layout/activity_beer">
 
-        <TextView
-            android:id="@+id/beer_on_sale"
+        <LinearLayout
+            android:id="@+id/beer_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/margin_normal"
-            android:text="@string/not_available"
-            android:textColor="@android:color/holo_red_dark"/>
+            android:orientation="vertical"
+            android:padding="@dimen/text_margin">
 
-        <TextView
-            android:id="@+id/beer_description"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/margin_normal"
-            android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-            tools:text="I'm a Golden Lager brewed in Germany."/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_normal"
+                android:text="@string/not_available"
+                android:textColor="@android:color/holo_red_dark"
+                android:visibility="@{beer.onSale ? View.GONE : View.VISIBLE}"/>
 
-        <TextView
-            android:id="@+id/beer_category"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/margin_small"
-            tools:text="Category: Imported"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_normal"
+                android:text='@{String.format("I&apos;m a %s brewed in %s", beer.type, beer.country)}'
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                tools:text="I'm a Golden Lager brewed in Germany."/>
 
-        <TextView
-            android:id="@+id/beer_brewer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/margin_small"
-            tools:text="Brewer: Brauerei Beck &amp; Company"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_small"
+                android:text="@{@string/category(beer.category)}"
+                tools:text="Category: Imported"/>
 
-        <TextView
-            android:id="@+id/beer_abv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/margin_normal"
-            tools:text="Alcohol Content (ABV): 5.0%"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_small"
+                android:text="@{@string/brewer(beer.brewer)}"
+                tools:text="Brewer: Brauerei Beck &amp; Company"/>
 
-        <TextView
-            android:id="@+id/beer_products"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/margin_normal"
-            android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-            tools:text="Products (5)"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_normal"
+                android:text='@{String.format("Alcohol Content (ABV): %.2f%%", beer.alcoholByVolume)}'
+                tools:text="Alcohol Content (ABV): 5.0%"/>
 
-    </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_normal"
+                android:text="@{@string/products(beer.products.size)}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                tools:text="Products (5)"/>
 
-</android.support.v4.widget.NestedScrollView>
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+</layout>
