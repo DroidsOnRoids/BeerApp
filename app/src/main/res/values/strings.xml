@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">BeerApp</string>
+    <string name="action_settings">Settings</string>
+    <string name="on_sale">On sale</string>
+    <string name="not_available">Not available</string>
+    <string name="products">Products (%d)</string>
+    <string name="category">Category: %s</string>
+    <string name="brewer">Brewer: %s</string>
+</resources>
