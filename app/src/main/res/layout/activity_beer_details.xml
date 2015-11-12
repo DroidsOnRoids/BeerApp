@@ -3,11 +3,11 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools">
 
-    <data class="BeerActivityBinding">
+    <data class="BeerDetailsActivityBinding">
 
         <import type="pl.droidsonroids.beerapp.model.Beer"/>
 
-        <import type="pl.droidsonroids.beerapp.BeerActivity"/>
+        <import type="pl.droidsonroids.beerapp.BeerDetailsActivity.BeerHandler"/>
 
         <variable
             name="beer"
@@ -15,7 +15,7 @@
 
         <variable
             name="handler"
-            type="BeerActivity"/>
+            type="BeerHandler"/>
 
     </data>
 
@@ -61,15 +61,15 @@
         </android.support.design.widget.AppBarLayout>
 
         <include
-            layout="@layout/content_beer"
+            layout="@layout/content_beer_details"
             app:beer="@{beer}"/>
 
         <android.support.design.widget.FloatingActionButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/fab_margin"
-            android:onClick="@{handler.onFloatingActionButtonClicked}"
-            android:src="@android:drawable/ic_dialog_email"
+            android:onClick="@{handler.addToFavourites}"
+            android:src="@drawable/ic_favorite_white_24dp"
             app:layout_anchor="@id/app_bar"
             app:layout_anchorGravity="bottom|end"/>
 

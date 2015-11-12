@@ -6,4 +6,5 @@
     <string name="products">Products (%d)</string>
     <string name="category">Category: %s</string>
     <string name="brewer">Brewer: %s</string>
+    <string name="no_beers">No beers were loaded.</string>
 </resources>

@@ -3,14 +3,16 @@ package pl.droidsonroids.beerapp.model;
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
 import android.databinding.BindingAdapter;
+import android.support.v7.widget.RecyclerView;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.google.gson.annotations.SerializedName;
-import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 import pl.droidsonroids.beerapp.BR;
+import pl.droidsonroids.beerapp.BeerAdapter;
 
 public class Beer extends BaseObservable {
 
@@ -28,7 +30,12 @@ public class Beer extends BaseObservable {
 
     @BindingAdapter({"bind:imageUrl"})
     public static void loadImage(final ImageView imageView, final String imageUrl) {
-        Picasso.with(imageView.getContext()).load(imageUrl).into(imageView);
+        Glide.with(imageView.getContext()).load(imageUrl).into(imageView);
+    }
+
+    @BindingAdapter({"bind:items"})
+    public static void loadItems(final RecyclerView recyclerView, final List<Beer> beers) {
+        recyclerView.setAdapter(new BeerAdapter(beers));
     }
 
     @Bindable

@@ -5,8 +5,8 @@ import android.databinding.Bindable;
 import android.databinding.BindingAdapter;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.google.gson.annotations.SerializedName;
-import com.squareup.picasso.Picasso;
 
 import pl.droidsonroids.beerapp.BR;
 
@@ -27,7 +27,7 @@ public class Product extends BaseObservable {
 
     @BindingAdapter({"bind:imageUrl"})
     public static void loadImage(final ImageView imageView, final String imageUrl) {
-        Picasso.with(imageView.getContext()).load(imageUrl).into(imageView);
+        Glide.with(imageView.getContext()).load(imageUrl).into(imageView);
     }
 
     @Bindable
