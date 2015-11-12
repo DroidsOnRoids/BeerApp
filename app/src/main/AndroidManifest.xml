@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".BeerListActivity"
+            android:name=".view.BeerListActivity"
             android:theme="@style/AppTheme.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,7 +20,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".BeerDetailsActivity"
+            android:name=".view.BeerDetailsActivity"
             android:theme="@style/AppTheme.NoActionBar.NoStatusBar" >
         </activity>
     </application>

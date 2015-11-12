@@ -5,17 +5,11 @@
 
     <data class="BeerItemBinding">
 
-        <import type="pl.droidsonroids.beerapp.model.Beer"/>
-
-        <import type="pl.droidsonroids.beerapp.BeerAdapter.BeerViewHolder.BeerHandler"/>
+        <import type="pl.droidsonroids.beerapp.viewmodel.BeerItemViewModel"/>
 
         <variable
-            name="beer"
-            type="Beer"/>
-
-        <variable
-            name="handler"
-            type="BeerHandler"/>
+            name="viewModel"
+            type="BeerItemViewModel"/>
 
     </data>
 
@@ -24,7 +18,7 @@
         android:layout_height="wrap_content"
         android:background="?selectableItemBackground"
         android:gravity="center_vertical"
-        android:onClick="@{handler.showBeerDetails}"
+        android:onClick="@{viewModel.showBeerDetails}"
         android:orientation="horizontal"
         android:paddingBottom="8dp"
         android:paddingLeft="16dp"
@@ -37,13 +31,13 @@
             android:layout_height="40dp"
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
-            app:imageUrl="@{beer.imageUrl}"/>
+            app:imageUrl="@{viewModel.beer.imageUrl}"/>
 
         <TextView
             android:id="@android:id/text1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{beer.name}"
+            android:text="@{viewModel.beer.name}"
             android:textAppearance="?attr/textAppearanceListItem"
             tools:text="Beer name"/>
 

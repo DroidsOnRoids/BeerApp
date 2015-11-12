@@ -2,19 +2,15 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
-        tools:context="pl.droidsonroids.beerapp.BeerListActivity">
+        tools:context="pl.droidsonroids.beerapp.view.BeerListActivity">
 
     <data class="BeerListActivityBinding">
 
-        <import type="android.view.View"/>
-
-        <import type="java.util.List"/>
-
-        <import type="pl.droidsonroids.beerapp.model.Beer"/>
+        <import type="pl.droidsonroids.beerapp.viewmodel.BeerListViewModel"/>
 
         <variable
-            name="beers"
-            type="List&lt;Beer>"/>
+            name="viewModel"
+            type="BeerListViewModel"/>
 
     </data>
 
@@ -42,13 +38,14 @@
             android:id="@+id/swipe_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            app:refreshing="@{viewModel.swipeRefreshLayoutRefreshing}">
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:items="@{beers}"/>
+                app:items="@{viewModel.beers}"/>
 
         </android.support.v4.widget.SwipeRefreshLayout>
 
@@ -57,7 +54,7 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:text="@string/no_beers"
-            android:visibility="@{beers.isEmpty ? View.VISIBLE : View.GONE}"/>
+            android:visibility="@{viewModel.emptyViewVisibility}"/>
 
     </android.support.design.widget.CoordinatorLayout>
 

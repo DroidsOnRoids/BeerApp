@@ -7,11 +7,11 @@
 
         <import type="android.view.View"/>
 
-        <import type="pl.droidsonroids.beerapp.model.Beer"/>
+        <import type="pl.droidsonroids.beerapp.viewmodel.BeerDetailsViewModel"/>
 
         <variable
-            name="beer"
-            type="Beer"/>
+            name="viewModel"
+            type="BeerDetailsViewModel"/>
 
     </data>
 
@@ -27,7 +27,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="@dimen/text_margin">
+            android:padding="@dimen/text_margin"
+            app:products="@{viewModel.beer.products}">
 
             <TextView
                 android:layout_width="match_parent"
@@ -35,13 +36,13 @@
                 android:layout_marginBottom="@dimen/margin_normal"
                 android:text="@string/not_available"
                 android:textColor="@android:color/holo_red_dark"
-                android:visibility="@{beer.onSale ? View.GONE : View.VISIBLE}"/>
+                android:visibility="@{viewModel.beer.onSale ? View.GONE : View.VISIBLE}"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_normal"
-                android:text='@{String.format("I&apos;m a %s brewed in %s", beer.type, beer.country)}'
+                android:text='@{String.format("I&apos;m a %s brewed in %s", viewModel.beer.type, viewModel.beer.country)}'
                 android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
                 tools:text="I'm a Golden Lager brewed in Germany."/>
 
@@ -49,28 +50,28 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_small"
-                android:text="@{@string/category(beer.category)}"
+                android:text="@{@string/category(viewModel.beer.category)}"
                 tools:text="Category: Imported"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_small"
-                android:text="@{@string/brewer(beer.brewer)}"
+                android:text="@{@string/brewer(viewModel.beer.brewer)}"
                 tools:text="Brewer: Brauerei Beck &amp; Company"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_normal"
-                android:text='@{String.format("Alcohol Content (ABV): %.2f%%", beer.alcoholByVolume)}'
+                android:text='@{String.format("Alcohol Content (ABV): %.2f%%", viewModel.beer.alcoholByVolume)}'
                 tools:text="Alcohol Content (ABV): 5.0%"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_normal"
-                android:text="@{@string/products(beer.products.size)}"
+                android:text="@{@string/products(viewModel.beer.products.size)}"
                 android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
                 tools:text="Products (5)"/>
 

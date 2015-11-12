@@ -1,9 +1,7 @@
-package pl.droidsonroids.beerapp;
+package pl.droidsonroids.beerapp.view;
 
-import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
@@ -11,6 +9,7 @@ import java.util.List;
 
 import pl.droidsonroids.beerapp.databinding.BeerItemBinding;
 import pl.droidsonroids.beerapp.model.Beer;
+import pl.droidsonroids.beerapp.viewmodel.BeerItemViewModel;
 
 public class BeerAdapter extends RecyclerView.Adapter<BeerAdapter.BeerViewHolder> {
 
@@ -49,22 +48,10 @@ public class BeerAdapter extends RecyclerView.Adapter<BeerAdapter.BeerViewHolder
         }
 
         public void displayBeer(final Beer beer) {
-            mBinding.setBeer(beer);
-            mBinding.setHandler(new BeerHandler(beer));
-        }
-
-        public static class BeerHandler {
-
-            private final Beer mBeer;
-
-            public BeerHandler(final Beer beer) {
-                mBeer = beer;
+            if (mBinding.getViewModel() == null) {
+                mBinding.setViewModel(new BeerItemViewModel());
             }
-
-            public void showBeerDetails(final View view) {
-                final Context context = view.getContext();
-                context.startActivity(BeerDetailsActivity.getIntent(context, mBeer.getId()));
-            }
+            mBinding.getViewModel().getBeer().set(beer);
         }
     }
 }
